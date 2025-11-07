@@ -6,6 +6,7 @@ import session from "express-session";
 import db from "./Kambaz/Database/index.js";
 import UserRoutes from "./Kambaz/Users/routes.js";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
+import ModulesRoutes from "./Kambaz/Modules/routes.js";
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(express.json());
 
 UserRoutes(app, db);
 CourseRoutes(app, db);
+ModulesRoutes(app, db);
 Lab5(app);
 
 const port = process.env.PORT || 4000;
