@@ -9,6 +9,17 @@ export default function ModulesRoutes(app, db) {
     res.json(modules);
   };
 
+  const createModuleForCourse = (req, res) => {
+    const { courseId } = req.params;
+    const module = {
+      ...req.body,
+      course: courseId,
+    };
+    const newModule = dao.createModule(module);
+    res.send(newModule);
+  };
+
+  app.post("/api/courses/:courseId/modules", createModuleForCourse);
   app.get("/api/courses/:courseId/modules", findModulesForCourse);
 }
 
