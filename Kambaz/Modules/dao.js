@@ -13,6 +13,13 @@ export default function ModulesDao(db) {
     return { status: "ok" };
   }
 
+  function updateModule(moduleId, moduleUpdates) {
+    const { modules } = db;
+    const module = modules.find((module) => module._id === moduleId);
+    Object.assign(module, moduleUpdates);
+    return module;
+  }
+
   function findModulesForCourse(courseId) {
     const { modules } = db;
     return modules.filter((module) => module.course === courseId);
@@ -22,6 +29,7 @@ export default function ModulesDao(db) {
     findModulesForCourse,
     createModule,
     deleteModule,
+    updateModule,
   };
 }
 
