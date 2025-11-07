@@ -19,7 +19,14 @@ export default function ModulesRoutes(app, db) {
     res.send(newModule);
   };
 
+  const deleteModule = (req, res) => {
+    const { moduleId } = req.params;
+    const status = dao.deleteModule(moduleId);
+    res.send(status);
+  };
+
   app.post("/api/courses/:courseId/modules", createModuleForCourse);
   app.get("/api/courses/:courseId/modules", findModulesForCourse);
+  app.delete("/api/modules/:moduleId", deleteModule);
 }
 
