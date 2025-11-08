@@ -30,6 +30,8 @@ if (process.env.SERVER_ENV !== "development") {
   sessionOptions.cookie = {
     sameSite: "none",
     secure: true,
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
   };
 }
 
