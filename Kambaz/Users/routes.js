@@ -1,7 +1,7 @@
 import UsersDao from "./dao.js";
 
 export default function UserRoutes(app, db) {
- const dao = UsersDao(db);
+ const dao = UsersDao();
   const createUser = (req, res) => {
     const currentUser = req.session["currentUser"];
     if (!currentUser || currentUser.role !== "FACULTY") {
