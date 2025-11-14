@@ -19,5 +19,14 @@ export default function UsersDao() {
 
   const deleteUser = (userId) => model.deleteOne({ _id: userId });
 
-  return { createUser, findAllUsers, findUserById, findUserByUsername, findUserByCredentials, updateUser, deleteUser };
+  const findUsersByRole = (role) => model.find({ role: role });
+
+  const findUsersByPartialName = (partialName) => {
+    const regex = new RegExp(partialName, "i");
+    return model.find({
+      $or: [{ firstName: { $regex: regex } }, { lastName: { $regex: regex } }],
+    });
+  };
+
+  return { createUser, findAllUsers, findUserById, findUserByUsername, findUserByCredentials, updateUser, deleteUser, findUsersByRole, findUsersByPartialName };
 }

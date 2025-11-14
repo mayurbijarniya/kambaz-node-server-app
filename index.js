@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to Full Stack Development!");
 });
 
-UserRoutes(app, db);
+UserRoutes(app);
 CourseRoutes(app, db);
 ModulesRoutes(app, db);
 AssignmentsRoutes(app, db);
