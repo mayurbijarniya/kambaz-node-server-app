@@ -3,18 +3,8 @@ import UsersDao from "./dao.js";
 export default function UserRoutes(app) {
  const dao = UsersDao();
   const createUser = async (req, res) => {
-    const currentUser = req.session["currentUser"];
-    if (!currentUser || currentUser.role !== "FACULTY") {
-      res.sendStatus(403);
-      return;
-    }
-    const user = await dao.findUserByUsername(req.body.username);
-    if (user) {
-      res.status(400).json({ message: "Username already taken" });
-      return;
-    }
-    const newUser = await dao.createUser(req.body);
-    res.json(newUser);
+    const user = await dao.createUser(req.body);
+    res.json(user);
   };
   const deleteUser = async (req, res) => {
     const status = await dao.deleteUser(req.params.userId);
