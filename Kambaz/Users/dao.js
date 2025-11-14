@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function UsersDao() {
   const createUser = async (user) => {
-    const newUser = { ...user, _id: uuidv4() };
+   const newUser = { ...user, _id: uuidv4() };
     return await model.create(newUser);
   }
 
@@ -17,7 +17,7 @@ export default function UsersDao() {
 
   const updateUser = (userId, user) => model.updateOne({ _id: userId }, { $set: user });
 
-  const deleteUser = (userId) => model.deleteOne({ _id: userId });
+  const deleteUser = (userId) => model.findByIdAndDelete(userId);
 
   const findUsersByRole = (role) => model.find({ role: role });
 
